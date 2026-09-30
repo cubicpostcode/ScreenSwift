@@ -44,6 +44,13 @@ licensed GitHub repository with an automated Windows installer release on versio
 Make source comments explain non-obvious Windows-hook behaviour.
 The repository must be suitable for public GitHub release: no credentials,
 telemetry, advertising, hidden background collection, or proprietary restrictions.
+
+Distribution: preserve the normal Inno Setup installer for GitHub releases and
+maintain a separate Microsoft Store MSIX packaging project. The Store package must
+use the same icon and privacy commitments, declare full-trust desktop execution
+only where necessary for the Win32 hook/clipboard/tray/capture design, and be
+associated with the Publisher identity assigned by Microsoft Partner Center before
+submission. Never hard-code a personal or certificate identity in public source.
 */
 
 public partial class App : Application

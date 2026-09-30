@@ -33,6 +33,28 @@ dotnet publish .\ScreenSwift\ScreenSwift.csproj -c Release -r win-x64 --self-con
 
 Compile `Installer\ScreenSwift.iss` with Inno Setup 6. The resulting `ScreenSwift-Setup.exe` is a normal installer: it adds ScreenSwift to the Start menu and Installed apps, creates an uninstaller, and can optionally add a desktop shortcut and start ScreenSwift when you sign in.
 
+## Microsoft Store edition
+
+The repository also contains a separate MSIX packaging project in
+`Store\ScreenSwift.Store.wapproj`. This is the Store edition; it does not replace
+the GitHub/Inno Setup installer. Microsoft signs the MSIX package it distributes,
+so Store customers see Microsoft as the trusted distributor rather than an
+unknown publisher warning.
+
+Before building the Store package, reserve **ScreenSwift** in Microsoft Partner
+Center and use Visual Studio's **Associate App with the Store** command on the
+`ScreenSwift.Store` project. This replaces the placeholder identity in
+`Store\Package.appxmanifest` with the identity assigned to the Store listing.
+Build the `Release|x64` configuration in Visual Studio on Windows to create the
+uploadable `.msixupload` submission file. The Store listing should state clearly
+that ScreenSwift captures only when invoked, keeps images only in memory/the
+Windows clipboard, and has no telemetry, advertising, accounts, or uploads.
+
+The app is packaged as a full-trust desktop app because it uses standard Win32
+desktop facilities for global input gestures, the clipboard, the notification
+area, and screen capture. Test the MSIX locally before submitting it, then use
+Partner Center's certification feedback as the final authority on Store approval.
+
 ## Notes
 
 The source intentionally avoids recording or saving screenshots to disk. Images remain in memory and on the normal Windows clipboard. A screenshot can still be pasted manually with `Ctrl+V` at any time.
