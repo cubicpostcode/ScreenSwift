@@ -1,0 +1,21 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio user state
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Installer output
+Installer/Output/
+
+# Local operating-system files
+Thumbs.db
+Desktop.ini
+
+# Do not commit private signing material
+*.pfx
+*.snk
